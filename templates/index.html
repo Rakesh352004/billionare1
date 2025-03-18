@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 Richest Billionaires</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: white;
+        }
+
+        a {
+            color: black;
+        }
+
+        /* Card Container: Adjusting layout for Top 5 Billionaires images in a row */
+        .billionaire-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        /* Each billionaire card styling */
+        .billionaire {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .billionaire img {
+            max-width: 100%;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .billionaire h4 {
+            font-size: 1rem;
+            color: black;
+        }
+
+        /* Hover effect on cards */
+        .billionaire:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Dynamic Cards Container */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card-container .card {
+            width: 18rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .card-title, .card-text {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+.see-more-btn, .back-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        top: -10px; /* Adjust this value to move buttons up */
+    }
+
+    .see-more-btn:hover, .back-btn:hover {
+        background-color: #45a049;
+    }
+
+    .back-btn {
+        background-color: #f44336;
+    }
+
+    .back-btn:hover {
+        background-color: #e53935;
+    }
+    </style>
+</head>
+<body>
+    <h1>Top 5 Richest Billionaires in the World</h1>
+
+    <!-- Container for Billionaires with images -->
+    <div class="billionaire-container">
+        <div class="billionaire">
+            <img src="{{ url_for('static', filename='images/bernard.jpg')}}" alt="Bernard Arnault">
+            <a href="/Bernard" >Bernard Arnault</a>
+            <h4>$211 Billion</h4>
+        </div>
+        <div class="billionaire">
+            <img src="{{ url_for('static', filename='images/elon.jpg')}}" alt="Elon Musk">
+            <a href="/elon_mask" >Elon Musk</a>
+            <h4>$180 Billion</h4>
+        </div>
+        <div class="billionaire">
+            <img src="{{ url_for('static', filename='images/jeff.jpg')}}" alt="Jeff Bezos">
+            <a href="/jeffbezos" >Jeff Bezos</a>
+            <h4>$114 Billion</h4>
+        </div>
+        <div class="billionaire">
+            <img src="{{ url_for('static', filename='images/lary.jpg')}}" alt="Larry Ellison">
+            <a href="larryellison">Larry Ellison</a>
+            <h4>$107 Billion</h4>
+        </div>
+        <div class="billionaire">
+            <img src="{{ url_for('static', filename='images/warrenbuffet.jpg')}}" alt="Warren Buffett">
+            <a href="warrenbuffet" >Warren Buffett</a>
+            <h4>$106 Billion</h4>
+        </div>
+    </div>
+
+    <h1 style="text-align: center; margin-top: 20px; color: white;">
+        Explore the World of Billionaires
+    </h1>
+
+    <div id="cardsContainer" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+        {% for data in content %}
+        <div class="card-container card" style="display: none;"> <!-- Initially hidden cards -->
+            <h2 class="card-title">Rank: {{ data.rank or "N/A" }}</h2>
+            <p class="card-text">Name: {{ data.person.personName or "Unknown" }}</p>
+            <p class="card-text">Final Worth: ${{ data.finalWorth or "N/A" }}</p>
+            <p class="card-text">Industries: {{ data.industries or "Unknown" }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button id="seeMoreBtn" class="see-more-btn">See More</button>
+    <button id="backBtn" class="back-btn" style="display: none;">Back</button> <!-- Hidden initially -->
+
+    <script>
+        let currentIndex = 0;
+        const cards = document.querySelectorAll('.card-container');
+        const seeMoreBtn = document.getElementById('seeMoreBtn');
+        const backBtn = document.getElementById('backBtn');
+
+        // Function to show next 8 cards
+        function showMoreCards() {
+            const cardsToShow = 8; // Number of cards to show at a time
+            for (let i = currentIndex; i < currentIndex + cardsToShow && i < cards.length; i++) {
+                cards[i].style.display = 'block';
+            }
+            currentIndex += cardsToShow;
+            if (currentIndex >= cards.length) {
+                seeMoreBtn.style.display = 'none'; // Hide "See More" when all cards are shown
+            }
+            backBtn.style.display = 'inline-block'; // Show the "Back" button
+        }
+
+        // Function to go back and hide the additional 8 cards
+        function hideMoreCards() {
+            // Hide the next 8 cards
+            for (let i = currentIndex - 8; i < currentIndex; i++) {
+                cards[i].style.display = 'none';
+            }
+            currentIndex -= 8;
+            if (currentIndex <= 8) {
+                backBtn.style.display = 'none'; // Hide the "Back" button if we are back to the first 8 cards
+            }
+            seeMoreBtn.style.display = 'inline-block'; // Show "See More" again if we're not at the end
+        }
+
+        // Show initial 8 cards
+        showMoreCards();
+
+        // Handle "See More" button click
+        seeMoreBtn.addEventListener('click', showMoreCards);
+
+        // Handle "Back" button click
+        backBtn.addEventListener('click', hideMoreCards);
+    </script>
+
+{% endblock %}

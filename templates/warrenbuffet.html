@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Warren Buffett's Lifestyle & Business Growth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .profile-photo {
+            width: 200px; /* Square shape */
+            height: 200px;
+            object-fit: cover; /* Maintains aspect ratio */
+            border-radius: 10px; /* Optional: Adds rounded corners */
+            display: block;
+            margin: 20px auto;
+            border: 3px solid #4CAF50;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            ul li {
+                font-size: 1rem;
+            }
+        }
+
+        /* Style for business growth chart */
+        .graph-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .graph-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Warren Buffett's Lifestyle & Business Growth</h1>
+    </header>
+
+    <!-- Profile photo centered with square shape -->
+    <img src="{{ url_for('static', filename='images/warrenbuffet.jpg') }}" class="profile-photo" alt="Warren Buffett Profile">
+
+    <div class="container">
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>Warren Buffett is an American investor, philanthropist, and the chairman and CEO of Berkshire Hathaway, one of the largest and most successful investment firms in the world. Often referred to as the "Oracle of Omaha," Buffett is known for his value investing approach, and he has amassed a fortune by making long-term investments in companies that offer strong potential for growth. This article highlights Buffett’s lifestyle and his incredible business journey.</p>
+        </div>
+
+        <!-- Lifestyle Section -->
+        <div class="section lifestyle">
+            <h2>Lifestyle</h2>
+            <p>Warren Buffett is known for his simple lifestyle despite being one of the wealthiest individuals in the world. Here are some key aspects of his lifestyle:</p>
+            <ul>
+                <li><span class="highlight">Frugality:</span> Buffett is famous for his modest and frugal lifestyle. He still lives in the same house he bought in 1958 for $31,500 and is known for avoiding extravagant purchases.</li>
+                <li><span class="highlight">Investing Philosophy:</span> Buffett follows a value investing philosophy, focusing on investing in companies with strong fundamentals and long-term growth potential.</li>
+                <li><span class="highlight">Philanthropy:</span> Buffett is one of the most prominent philanthropists in the world. Along with Bill Gates, he created the Giving Pledge, encouraging billionaires to give away the majority of their wealth to charitable causes.</li>
+                <li><span class="highlight">Family-Oriented:</span> Despite his success, Buffett prioritizes his family and is known to have a close relationship with his children and friends, often spending time in Omaha.</li>
+            </ul>
+        </div>
+
+        <!-- Business Growth Section -->
+        <div class="section business-growth">
+            <h2>Business Growth</h2>
+            <p>Warren Buffett’s business journey has been defined by strategic investments, prudent decision-making, and a long-term vision. Below are some key milestones that illustrate his business growth:</p>
+            <ul>
+                <li><strong>Berkshire Hathaway:</strong> Buffett took control of Berkshire Hathaway in 1965, transforming it from a struggling textile manufacturer into one of the largest investment firms in the world.</li>
+                <li><strong>Value Investing:</strong> Buffett is known for his value investing approach, focusing on purchasing companies with strong earnings potential at undervalued prices. He has invested in companies like Coca-Cola, American Express, and Geico.</li>
+                <li><strong>Acquisitions:</strong> Under Buffett’s leadership, Berkshire Hathaway has acquired numerous companies, including Dairy Queen, See’s Candies, and Clayton Homes, expanding its business portfolio across various industries.</li>
+                <li><strong>Stock Market Success:</strong> Through his investing acumen, Buffett has achieved remarkable returns on investments, making him one of the wealthiest individuals globally.</li>
+                <li><strong>Philanthropic Commitment:</strong> In addition to his investments, Buffett has pledged to give away 99% of his fortune to charitable causes, with billions already donated to organizations like the Bill & Melinda Gates Foundation.</li>
+            </ul>
+            <div class="graph-container">
+                <img src="https://mlsjoxwh2dv5.i.optimole.com/cb:fJ2b~7176/w:auto/h:auto/q:90/f:best/https://finmasters.com/wp-content/uploads/2023/02/Warren-Buffett-Net-Worth.jpg" alt="Warren Buffett's Business Growth Graph" />
+            </div>
+        </div>
+
+    </div>
+    <center>
+    <div class="back-buttons">
+        <a href="/">Back to Home</a>
+    </div>
+        </center>
+
+    <footer class="footer">
+        <p>&copy; 2024 Warren Buffett's Journey. All Rights Reserved. <br><a href="https://en.wikipedia.org/wiki/Warren_Buffett" target="_blank" rel="noopener noreferrer">Learn More</a></p>
+    </footer>
+
+</body>
+</html>

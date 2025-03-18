@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard with Charts</title>
+    <style>
+        body {
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex: 1 1 calc(50% - 10px); /* Two columns */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .chart-card canvas {
+            max-width: 100%;
+            max-height: 300px;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .chart-details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .column {
+                flex: 1 1 100%; /* Single column on smaller screens */
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h2>Visual Data Representation</h2>
+    <div class="charts-container">
+        <!-- Column 1 -->
+        <div class="column">
+            <div class="chart-card">
+                <div class="chart-title">Gender Distribution</div>
+                <canvas id="genderChart"></canvas>
+                <div class="chart-details">Shows the proportion of males, females, and others.</div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Regional Distribution</div>
+                <canvas id="regionChart"></canvas>
+                <div class="chart-details">Represents the population by region.</div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Monthly Sales Trend</div>
+                 <canvas id="monthlySalesChart"></canvas>
+
+                <div class="chart-details">Monthly sales performance over the year.</div>
+            </div>
+
+        </div>
+
+        <!-- Column 2 -->
+        <div class="column">
+            <div class="chart-card">
+                <div class="chart-title">Revenue Trends</div>
+                <canvas id="revenueChart"></canvas>
+                <div class="chart-details">Tracks yearly revenue trends.</div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Age Distribution</div>
+                <canvas id="ageDistributionChart"></canvas>
+                <div class="chart-details">Breakdown of age groups across the dataset.</div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">Category Distribution</div>
+                <canvas id="categoryDistributionChart"></canvas>
+                <div class="chart-details">Distribution of sales by category.</div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Sample data for demonstration
+   const sampleData = {
+    genders: { male: 10, female: 15, other: 5 },
+    ageDistribution: [5, 10, 20, 15],
+    ageGroups: ["<18", "18-25", "26-40", "40+"],
+    regions: ["North", "South", "East", "West"],
+    regionData: [30, 50, 20, 40],
+    productSales: ["Product A", "Product B", "Product C", "Product D"],
+    salesData: [60, 40, 80, 20],
+    monthlySales: [100, 200, 150, 300, 250, 400, 350, 450, 500, 550, 600, 650],
+    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    categories: ["Electronics", "Clothing", "Groceries", "Furniture", "Others"],
+    categoryData: [120, 150, 180, 100, 90],
+    revenueYears: ["2018", "2019", "2020", "2021", "2022"],
+    revenueData: [500, 600, 700, 800, 900]
+};
+
+
+    const chartOptionsWithTitle = (title) => ({
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: title }
+        }
+    });
+
+    // Create charts
+    new Chart(document.getElementById('genderChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Male', 'Female', 'Other'],
+            datasets: [{
+                data: Object.values(sampleData.genders),
+                backgroundColor: ['#007bff', '#ffc107', '#28a745']
+            }]
+        },
+        options: chartOptionsWithTitle('Gender Distribution')
+    });
+
+    new Chart(document.getElementById('ageDistributionChart'), {
+        type: 'bar',
+        data: {
+            labels: sampleData.ageGroups,
+            datasets: [{
+                data: sampleData.ageDistribution,
+                backgroundColor: '#6c757d'
+            }]
+        },
+        options: {
+            ...chartOptionsWithTitle('Age Distribution'),
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    new Chart(document.getElementById('regionChart'), {
+        type: 'doughnut',
+        data: {
+            labels: sampleData.regions,
+            datasets: [{
+                data: sampleData.regionData,
+                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56']
+            }]
+        },
+        options: chartOptionsWithTitle('Regional Distribution')
+    });
+
+
+
+   new Chart(document.getElementById('monthlySalesChart'), {
+    type: 'line',
+    data: {
+        labels: sampleData.months, // Use months as labels
+        datasets: [{
+            data: sampleData.monthlySales,
+            label: 'Monthly Sales',
+            borderColor: '#007bff',
+            fill: false,
+            pointBackgroundColor: '#007bff',
+            pointRadius: 4,
+            lineTension: 0.3
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Monthly Sales Trend' }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Sales (in units)'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Months'
+                }
+            }
+        }
+    }
+});
+
+    new Chart(document.getElementById('categoryDistributionChart'), {
+        type: 'polarArea',
+        data: {
+            labels: sampleData.categories,
+            datasets: [{
+                data: sampleData.categoryData,
+                backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56', '#28a745']
+            }]
+        },
+        options: chartOptionsWithTitle('Category Distribution')
+    });
+
+    new Chart(document.getElementById('revenueChart'), {
+        type: 'line',
+        data: {
+            labels: sampleData.revenueYears,
+            datasets: [{
+                data: sampleData.revenueData,
+                label: 'Yearly Revenue',
+                borderColor: '#36a2eb',
+                fill: true,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)'
+            }]
+        },
+        options: chartOptionsWithTitle('Revenue Trends')
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}

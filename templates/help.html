@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+
+{% block title %}help page{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Help Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+        color: white;
+        }
+
+        h3 {
+            color: black;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #37474f;
+            border-bottom: 2px solid #8e9eab;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* New stylish buttons */
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(145deg, #6a77ff, #4a5cf4);
+            border: 1px solid #4a5cf4;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, #4a5cf4, #6a77ff);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3), -4px -4px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        /* Profiles Section */
+        .profiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .profile {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .profile h3 {
+            margin: 10px 0;
+            color: #37474f;
+        }
+
+        .profile p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<style>
+    h3{
+    color: black;
+    }
+        p {
+            color:white;
+        }
+     </style>
+<div class="main-content">
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <h3>If you have any questions about the Billionaire Statistics website, take a look at the FAQs below.</h3>
+
+    <div class="faq-section">
+        <button class="faq-button" onclick="toggleFAQ(1)">What is Billionaire Statistics?</button>
+        <div id="faq1" class="faq-content">
+            <p style="text-align: center; margin-top: 20px; color: black;"
+    </p> Billionaire Statistics is a platform that provides up-to-date information and data on the world's wealthiest individuals, including their net worth, industries, and growth trends.</p>
+        </div>
+
+        <button class="faq-button" onclick="toggleFAQ(2)">How do you collect data of billionaires?</button>
+        <div id="faq2" class="faq-content">
+             <p style="text-align: center; margin-top: 20px; color: black;"
+    </p>
+            We gather data from publicly available financial reports, business news, and trusted databases to ensure the most accurate and current information about billionaires.</p>
+        </div>
+
+        <button class="faq-button" onclick="toggleFAQ(3)">Can I track a specific billionaire's net worth over time?</button>
+        <div id="faq3" class="faq-content">
+            <p style="text-align: center; margin-top: 20px; color: black;"
+    </p>
+            Yes, our platform allows you to track specific billionaires' net worth and compare it over time to see growth or decline.</p>
+        </div>
+
+        <button class="faq-button" onclick="toggleFAQ(4)">Do you update billionaire data regularly?</button>
+        <div id="faq4" class="faq-content">
+           <p style="text-align: center; margin-top: 20px; color: black;"
+    </p>
+            Yes, we update billionaire data regularly to reflect changes in net worth, business investments, and market fluctuations.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function toggleFAQ(faqNumber) {
+        var content = document.getElementById('faq' + faqNumber);
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+</script>
+
+        <section id="overview">
+            <h2>Overview</h2>
+            <h3> Our platform offers intuitive tools to interpret, analyze, and present statistical data with ease. Navigate charts, export reports, and filter data seamlessly.</h3>
+            <button id="overviewBtn">Learn More</button>
+        </section>
+
+
+
+        <section id="about">
+            <h2>Contact Us</h2>
+            <div class="profiles">
+                <div class="profile">
+                    <img src="{{ url_for('static', filename='images/Rakesh.jpg')}}" alt="Team Leader">
+                    <h3>Rakesh V</h3>
+                    <p>Email: ry352004@gmail.com </p>
+                    <p>Phone: +91 9393975261</p>
+                </div>
+                <div class="profile">
+                    <img src="{{ url_for('static', filename='images/Raghu.jpg')}}" alt="Team Member">
+                    <h3>Raghu K</h3>
+              <p>Email : raghurk090@gmail.com</p>
+                    <p>Phone: +91 8073090366</p>
+                </div>
+                <div class="profile">
+                    <img src="{{ url_for('static', filename='images/Prajwal.jpg')}}" alt="Team Member">
+                    <h3>Prajwal Koushik C </h3>
+              <p>Email : prajwalkoushik27@gmail.com</h3>
+                    <p>Phone: +91 9901654281</p>
+                </div>
+                <div class="profile">
+                    <img src="{{ url_for('static', filename='images/Mahalakshmi.jpg')}}" alt="Team Member">
+                    <h3>Mahalakshmi P S</h3>
+              <p>Email : mahareddy.544@gmail.com</p>
+                    <p>Phone: +91 8864531129</p>
+                </div>
+            </div>
+        </section>
+
+    <!-- Modal for Overview -->
+    <div id="overviewModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeOverview">&times;</span>
+            <h3>
+                <h2>Vision</h2>
+                To be the leading platform for insights, inspiration, and in-depth information on the world’s most successful individuals, empowering users to learn, grow, and achieve extraordinary success.
+                <h2>Mission</h2>
+                To provide accurate, engaging, and inspiring content about billionaires, their journeys, and their impact on the world, fostering a community of aspirational thinkers and future changemakers.
+            </h3>
+        </div>
+    </div>
+
+    <!-- Modal for FAQs -->
+
+
+    <script>
+        // JavaScript to handle opening and closing modals
+        document.getElementById("overviewBtn").addEventListener("click", function() {
+            document.getElementById("overviewModal").style.display = "block";
+        });
+
+
+
+        document.getElementById("closeOverview").addEventListener("click", function() {
+            document.getElementById("overviewModal").style.display = "none";
+        });
+
+
+
+        // Close modal if clicked outside of modal content
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("overviewModal")) {
+                document.getElementById("overviewModal").style.display = "none";
+            }
+            if (event.target == document.getElementById("faqModal")) {
+                document.getElementById("faqModal").style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
+{% endblock %}
